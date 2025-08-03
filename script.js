@@ -401,7 +401,6 @@ modalGridToggle.addEventListener('change', (e) => {
 
 modalOutputTypeSelect.addEventListener('change', (e) => {
     outputTypeSelect.value = e.target.value;
-    generateOutput();
 });
 
 drawGrid();
