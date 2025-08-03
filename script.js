@@ -17,6 +17,7 @@ const eraseTool = document.getElementById('eraseTool');
 const importBtn = document.getElementById('importBtn');
 const importInput = document.getElementById('importInput');
 const outputTypeSelect = document.getElementById('outputTypeSelect');
+const autoUpdate = document.getElementById('autoUpdate');
 
 const snapToggle = document.getElementById('snapToggle');
 const gridSize = document.getElementById('gridSize');
@@ -30,6 +31,7 @@ const modalGridSize = document.getElementById('modalGridSize');
 const modalFormatToggle = document.getElementById('modalFormatToggle');
 const modalGridToggle = document.getElementById('modalGridToggle');
 const modalOutputTypeSelect = document.getElementById('modalOutputTypeSelect');
+const modalUpdateSelect = document.getElementById('modalUpdateToggle');
 
 let points = [];
 let currentTool = 'point';
@@ -376,6 +378,7 @@ function syncSettings() {
     modalFormatToggle.checked = formatToggle.checked;
     modalGridToggle.checked = gridToggle.checked;
     modalOutputTypeSelect.value = outputTypeSelect.value;
+    modalUpdateSelect.value = autoUpdate.value;
 }
 
 // Add event listeners for modal controls
@@ -391,7 +394,7 @@ modalGridSize.addEventListener('change', (e) => {
 
 modalFormatToggle.addEventListener('change', (e) => {
     formatToggle.checked = e.target.checked;
-    generateOutput();
+    if (autoUpdate.value) generateOutput();
 });
 
 modalGridToggle.addEventListener('change', (e) => {
@@ -401,6 +404,11 @@ modalGridToggle.addEventListener('change', (e) => {
 
 modalOutputTypeSelect.addEventListener('change', (e) => {
     outputTypeSelect.value = e.target.value;
+    if (autoUpdate.value) generateOutput();
+});
+
+modalUpdateSelect.addEventListener('change', (e) => {
+    autoUpdate.value = e.target.value;
 });
 
 drawGrid();
