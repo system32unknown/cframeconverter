@@ -394,7 +394,7 @@ modalGridSize.addEventListener('change', (e) => {
 
 modalFormatToggle.addEventListener('change', (e) => {
     formatToggle.checked = e.target.checked;
-    if (autoUpdate.value) generateOutput();
+    if (autoUpdate.checked) generateOutput();
 });
 
 modalGridToggle.addEventListener('change', (e) => {
@@ -404,11 +404,11 @@ modalGridToggle.addEventListener('change', (e) => {
 
 modalOutputTypeSelect.addEventListener('change', (e) => {
     outputTypeSelect.value = e.target.value;
-    if (autoUpdate.value) generateOutput();
+    if (autoUpdate.checked) generateOutput();
 });
 
 modalUpdateSelect.addEventListener('change', (e) => {
-    autoUpdate.value = e.target.value;
+    autoUpdate.checked = e.target.checked;
 });
 
 drawGrid();
