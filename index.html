@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CFrame Converter</title>
+  <link rel="stylesheet" href="style.css">k
+</head>
+
+<body>
+  <div class="container">
+    <h2>CFrame Point Converter</h2>
+    <p>Click on canvas to add points. Click "Generate" to generate CFrame code.</p>
+
+    <div class="offset-controls">
+      Offset:
+      X: <input type="number" id="offsetX" class="offset-input" value="0" step="0.1">
+      Y: <input type="number" id="offsetY" class="offset-input" value="0" step="0.1">
+      Z: <input type="number" id="offsetZ" class="offset-input" value="0" step="0.1">
+    </div>
+
+    <div class="import-container">
+      <textarea id="importInput" placeholder="Paste CFrame points code here. Format: {CFrame.new(x, y, z), ...}"
+        class="import-textarea"></textarea>
+      <button id="importBtn">Import Points</button>
+    </div>
+
+    <div class="tool-container">
+      Tools:
+      <div class="tool-btn active" id="pointTool">Point</div>
+      <div class="tool-btn" id="lineTool">Line</div>
+      <div class="tool-btn" id="eraseTool">Erase</div>
+    </div>
+
+    <div>Size: <input type="number" id="canvasSize" class="size-control" value="500" min="200" max="1000" step="50">
+    </div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class="button-container">
+      <button id="doneBtn">Generate</button>
+      <button id="clearBtn">Clear</button>
+      <select id="shapeSelect">
+        <option value="">Select Shape</option>
+        <option value="circle">Circle</option>
+        <option value="triangle">Triangle</option>
+        <option value="square">Square</option>
+        <option value="heart">Heart</option>
+        <option value="star">Star</option>
+      </select>
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="formatToggle">
+          <span class="slider"></span>
+        </label>
+        <span>One-line format</span>
+      </div>
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="gridToggle" checked>
+          <span class="slider"></span>
+        </label>
+        <span>Show Grid</span>
+      </div>
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="snapToggle">
+          <span class="slider"></span>
+        </label>
+        <span>Snap to Grid</span>
+      </div>
+      <div class="toggle-container">
+        <label>Output Type:</label>
+        <select id="outputTypeSelect" class="size-control">
+          <option value="cframe">CFrame</option>
+          <option value="vector3">Vector3</option>
+          <option value="vector">Vector</option>
+        </select>
+      </div>
+      <div class="grid-size-container">
+        Grid Size: <input type="number" id="gridSize" class="size-control" value="50" min="10" max="100" step="10">
+      </div>
+    </div>
+    <button class="settings-btn" id="settingsBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c-.94 1.543.826 3.31 2.37 2.37.996.608 2.296.07 2.572-1.065z">
+        </path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+        </path>
+      </svg>
+      Settings
+    </button>
+
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Settings</h3>
+        <div class="modal-grid">
+          <div class="toggle-container">
+            <label class="switch">
+              <input type="checkbox" id="modalSnapToggle">
+              <span class="slider"></span>
+            </label>
+            <span>Snap to Grid</span>
+          </div>
+
+          <div class="grid-size-container">
+            Grid Size: <input type="number" id="modalGridSize" class="size-control" value="50" min="10" max="100"
+              step="10">
+          </div>
+
+          <div class="toggle-container">
+            <label class="switch">
+              <input type="checkbox" id="modalFormatToggle">
+              <span class="slider"></span>
+            </label>
+            <span>One-line format</span>
+          </div>
+
+          <div class="toggle-container">
+            <label class="switch">
+              <input type="checkbox" id="modalGridToggle" checked>
+              <span class="slider"></span>
+            </label>
+            <span>Show Grid</span>
+          </div>
+
+          <div class="toggle-container">
+            <label>Output Type:</label>
+            <select id="modalOutputTypeSelect" class="size-control">
+              <option value="cframe">CFrame</option>
+              <option value="vector3">Vector3</option>
+              <option value="vector">Vector</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="output-container">
+      <textarea id="output" readonly></textarea>
+      <button id="copyBtn">Copy</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
